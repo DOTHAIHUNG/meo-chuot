@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    var Rat = function () {
+        this.nameRat = "name";
+        this.ratW = 0;
+        this.ratSpeed = 0;
+        this.statusRat = "Song";
+        this.numberRat = 0;
+
+        //////phuong thuc lay ten cho doi tuong chuot//////////
+        this.setNameRat = function () {
+            this.nameRat = prompt("Nhap ten chuot");
+        }
+        this.getNameRat = function () {
+            return this.nameRat;
+        }
+
+        ///////phuong thuc lay khoi luong cho doi tuong chuot////////////
+        this.setRatW = function () {
+            this.ratW = parseInt(prompt("Nhap khoi luong chuot"));
+        }
+        this.getRatW = function () {
+            return this.ratW;
+        }
+
+        /////////phuong thuc truyen va lay toc do cho doi tuong chuot////////////
+        this.setRatSpeed = function () {
+            this.ratSpeed = parseInt(prompt("Nhap toc do cua chuot"));
+        }
+        this.getRatSpeed = function () {
+            return this.ratSpeed;
+        }
+
+        ///////phuong thuc lay trang thai cua chuot//////////////
+        this.setStatusRat = function () {
+            this.statusRat = prompt("Nhap vao trang thai cua chuot");
+        }
+        this.getStatusRat = function () {
+            return this.statusRat;
+        }
+
+        ////////phuong thuc keu cua chuot///////////
+        this.soundRat = function () {
+            if (this.statusRat === "Song") {
+                document.write("chit chit" + "</br>");
+            } else {
+                document.write("Chuot chet keu the quai nao duoc" + "</br>");
+            }
+        }
+
+        ///////phuong thuc lay so luong chuot/////////
+        this.setNumberRat = function () {
+            this.numberRat = parseInt(prompt("Nhap so luong chuot"));
+        }
+        this.getNumberRat = function () {
+            return this.numberRat;
+        }
+    }
+
+    var Cat = function () {
+        this.nameCat = "name";
+        this.catW = 0;
+        this.catSpeedMax = 0;
+
+        ////////phuong thuc truyen va lay ten cua meo////////////////
+        this.setNameCat = function () {
+            this.nameCat = prompt("Nhap ten cua meo");
+        }
+        this.getNameCat = function () {
+            return this.nameCat;
+        }
+
+        ////////phuong thuc truyen va lay khoi luong cua meo//////////////
+        this.setCatW = function () {
+            this.catW = parseInt(prompt("Nhap khoi luong cua meo"));
+        }
+        this.getCatW = function () {
+            return this.catW;
+        }
+
+        /////////phuong thuc truyen va lay toc do cua meo///////////////////////
+        this.setCatSpeedMax = function () {
+            this.catSpeedMax = parseInt(prompt("Nhap toc do toi da cua meo"));
+        }
+        this.getCatSpeedMax = function () {
+            return this.catSpeedMax;
+        }
+
+        /////////phuong thuc meo keu/////////////////
+        this.soundCat = function () {
+            document.write("Meo meo" + "<br>>");
+        }
+
+        ///////phuong thuc bat chuot cua meo/////////////////
+        this.catchOfCat = function () {
+            if (this.catSpeedMax > rat.ratSpeed && rat.numberRat > 0) {
+                document.write(this.nameCat + " bat dau truy duoi " + rat.nameRat + "</br>");
+                this.soundCat();
+                document.write(this.nameCat + " sau mot hoi truy duoi, " + this.nameCat + " da bat duoc " + rat.nameRat + "</br>");
+                this.soundCat();
+                this.eatOfCat();
+                let newCatW = this.getCatW();
+                document.write("Can nang cua meo bay gio la " + newCatW + "</br>");
+                document.write(this.nameCat + " da bat dc 1 con chuot, gio khong the bat duoc nua");
+            }
+            if (this.catSpeedMax < rat.ratSpeed) {
+                document.write(rat.nameRat + " qua nhanh nen " + this.nameCat + " khong the bat dc" + "</br>");
+            }
+            if (rat.numberRat === 0) {
+                document.write("Da bao khong co chuot trong nha thi lam sao ma bat dc");
+            }
+        }
+
+        ////////////phuong thuc an cua meo///////////////////
+        this.eatOfCat = function () {
+            if (rat.statusRat === "Song" || rat.statusRat === "song") {
+                this.catW += rat.ratW;
+            } else {
+                document.write(rat.nameRat + " da chet, " + this.nameCat + " khong the an" + "</br>")
+            }
+        }
+    }
+
+    var rat = new Rat();
+    var cat = new Cat();
+
+    function getInfoRat() {
+        rat.setNameRat();
+        rat.setRatW();
+        rat.setRatSpeed();
+        rat.setStatusRat();
+        rat.soundRat();
+    }
+
+    function getInfoCat() {
+        cat.setNameCat();
+        cat.setCatW();
+        cat.setCatSpeedMax();
+    }
+
+    function game() {
+        rat.setNumberRat();
+        rat.getNumberRat();
+        if (rat.numberRat === 0) {
+            alert("Khong co chuot trong nha");
+        } else {
+            for (let i = 0; i < rat.numberRat; i++) {
+                getInfoRat();
+            }
+        }
+        getInfoCat();
+        cat.catchOfCat();
+    }
+    game();
+
+</script>
+</body>
+</html>
